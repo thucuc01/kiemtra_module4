@@ -7,8 +7,7 @@
 <body>
 <header th:replace="/layout :: header"></header>
 <div class="container">
-    <hr>
-    <h1>LIST CITY</h1>
+
     <hr>
     <div class="row">
 
@@ -16,13 +15,8 @@
             <th:block th:if="${message}">
                 <p th:text="${message}"></p>
             </th:block>
-<!--            <form>-->
-<!--                Search by name:-->
-<!--                <input name="s" type="text"/>-->
-<!--                <input class="btn btn-secondary" type="submit" th:value="Search"/>-->
-<!--            </form>-->
-        </div>
 
+        </div>
         <div class="col">
             <form style="text-align: right">
                 <input type="submit" class="btn btn-secondary" name="s1" th:value="SortByName">
@@ -32,34 +26,31 @@
     </div>
     <hr>
     <div class="row">
-        <table border="1" class="table table-dark table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Country</th>
 
-                <th>Edit | Delete</th>
-
-            </tr>
-            <th:block th:each="city : ${citys}">
+            <table border="1" class="table table-dark table-striped" style="text-align: center;">
                 <tr>
-                    <td th:text="${city.getId()}"></td>
-                    <td><a th:href="@{/info/__${city.id}__ }"><span th:text="${city.getName()}"></span></a></td>
-                    <td th:text="${city.getCountry().getName()}"></td>
-<!--                    <td th:text="${city.getAria()}"></td>-->
-<!--                    <td th:text="${city.getPopulation()}"></td>-->
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Edit | Delete</th>
 
-<!--                    <td th:text="${city.getGdp()}"></td>-->
-<!--                    <td th:text="${city.getDesv()}"></td>-->
-
-                    <td>
-                        <a class="btn btn-warning" th:href="@{/edit/__${city.id}__ }">Edit</a> |
-                        <a class="btn btn-danger" th:href="@{/delete/__${city.id}__ }">Delete</a>
-                    </td>
-<!--                    <td><a class="btn btn-danger" th:href="@{/delete/__${city.id}__ }">Delete</a></td>-->
                 </tr>
-            </th:block>
-        </table>
+                <th:block th:each="city : ${citys}">
+                    <tr>
+                        <td th:text="${city.getId()}"></td>
+                        <td><a th:href="@{/info/__${city.id}__ }"><span th:text="${city.getName()}"></span></a></td>
+                        <td th:text="${city.getCountry().getName()}"></td>
+
+
+                        <td>
+                            <a class="btn btn-warning" th:href="@{/edit/__${city.id}__ }">Edit</a> |
+                            <a class="btn btn-danger" th:href="@{/delete/__${city.id}__ }">Delete</a>
+                        </td>
+                        <!--                    <td><a class="btn btn-danger" th:href="@{/delete/__${city.id}__ }">Delete</a></td>-->
+                    </tr>
+                </th:block>
+            </table>
+
         <div>
             <a th:href="@{'/home'(page=${citys.number})}" th:if="${citys.hasPrevious()}">Previous</a>
             <span th:text="${citys.number + 1}"></span>/<span th:text="${citys.totalPages}"></span>

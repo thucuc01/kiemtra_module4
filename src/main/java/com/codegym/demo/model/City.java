@@ -1,8 +1,11 @@
 package com.codegym.demo.model;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class City {
@@ -12,10 +15,14 @@ public class City {
 
     @NotEmpty
     private String name;
+    @NumberFormat
     @Min(1)
     private double aria;
+    @NumberFormat
     @Min(1)
     private int population;
+    @NumberFormat
+    @Min(1)
     private double gdp;
     @NotEmpty
     private String desv;
