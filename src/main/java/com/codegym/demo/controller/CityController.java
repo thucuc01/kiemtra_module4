@@ -100,11 +100,11 @@ public class CityController {
     public ModelAndView editCity(@Valid @ModelAttribute("city") City city, BindingResult bindingResult){
         ModelAndView modelAndView;
         if(bindingResult.hasFieldErrors()){
-            modelAndView=new ModelAndView("city/create");
+            modelAndView=new ModelAndView("city/edit");
             return modelAndView;
         }
         cityService.save(city);
-        modelAndView=new ModelAndView("city/create");
+        modelAndView=new ModelAndView("city/edit");
         modelAndView.addObject("city",new City());
         modelAndView.addObject("message"," City editted successfully");
         return modelAndView;
